@@ -1,0 +1,16 @@
+##FUNÇÔES ESTATISTICAS#######################################################################
+#cria função para ler datas do excel
+excelDate2Date <- function(excelDate) {
+  Date <- excelDate + as.Date("1900-01-01") - 2
+  return(Date)
+} 
+
+#cria função para media movel  12 meses 
+MM12m <- function(x) {
+                y<-c(1:(length(x)))                        #cria variavel y to tamanho da serie inserida
+                      for(i in 1:(length(x)-11)) {         #para i vezes menos 12 
+                            y[i+11]<-mean(x[(i+0):(i+11)]) #faz média de 12 passos
+                      }
+                y[1:12]<-NA                                #coloca NA nas primeiras 12 entradas
+                return(y)                                  #dá como retorno a série media movel 12 meses
+}
