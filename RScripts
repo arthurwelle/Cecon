@@ -1,10 +1,63 @@
 ##FUNÇÔES ESTATISTICAS#######################################################################
-#cria função para ler datas do excel
 excelDate2Date <- function(excelDate) {
   Date <- excelDate + as.Date("1900-01-01") - 2
   return(Date)
 } 
-
+#cria uma função que retorna texto "positivo" "negativo" dependendo se acima ou abaixo de z 
+FazTexto.Cortes1 <- function(x,z,y){#x é a séria a ser análisada, z fronteira, y=1 se feminino, y=2 se masculino
+  if(x>=z & y==1) {k<-"positiva"}
+  if(x>=z & y==2) {k<-"positivo"}
+  if(x<z & y==1) {k<-"negativa"}
+  if(x<z & y==2) {k<-"negativo"}
+  return(k)
+}
+#cria uma função que retorna texto "muito ruim", "ruim", "bom", "muito bom"
+FazTexto.Cortes3 <- function(x,y,z,w){#x é a séria a ser análisada, y=corte1, z=corte2, w=corte3
+  k<-"muito ruim"
+  if(x>y) {k<-"ruim"}
+  if(x>z) {k<-"bom"}
+  if(x>w) {k<-"muito bom"}
+  return(k)
+}
+#cria uma função que retorna o ultimo valor de uma série x 
+FazTexto.UltimoValor <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k=format(round(x[length(x)],digits = y), big.mark=".", decimal.mark=",") 
+  return(k)
+}
+#cria uma função que retorna o valor 12 meses anteriores de uma série mensal x 
+FazTexto.Valor12mAntes <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k=format(round(x[length(x)-11],digits = y), big.mark=".", decimal.mark=",") 
+  return(k)
+}
+#cria uma função que retorna a variação absoluta (em pontos percentuais se ja for uma série percental) de uma série no ultimo ano 
+FazTexto.Var12m.Abs <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k=format(round(x[length(x)]-x[length(x)-11],digits = y), big.mark=".", decimal.mark=",") #subtrai o ultimo valor da série x de 12 meses anteriores
+  return(k)
+}
+#cria uma função que retorna a variação percentuais de uma série no ultimo ano
+FazTexto.Var12m.porc <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k=format(round((((x[length(x)]/x[length(x)-11])-1)*100),digits = y), big.mark=".", decimal.mark=",") #divide o ultimo valor da série x de 12 meses anteriores
+  return(k)
+}
+#cria uma função que retorna a variação em pontos percentuais de uma série no ultimos dois anos
+FazTexto.Var24m.Abs <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k=format(round(x[length(x)]-x[length(x)-23],digits = y), big.mark=".", decimal.mark=",") #subtrai o ultimo valor da série x de 24 meses anteriores
+  return(k)
+}
+#cria uma função que retorna a variação percentuais de uma série no ultimos dois anos
+FazTexto.Var24m.porc <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k=format(round((((x[length(x)]/x[length(x)-23])-1)*100),digits = y), big.mark=".", decimal.mark=",") #divide o ultimo valor da série x de 24 meses anteriores
+  return(k)
+}
+#cria função para acumulado em 12 meses
+FazTexto.Acc12m <- function(x,y){#x é a séria a ser análisada, y o número de digitos da saida
+  k<-0
+     for(i in 0:11) {         #para i vezes menos 12 
+        k<-k + x[length(x)-i] #faz soma de 12 passos
+     }
+     k=format(round(k,digits = y), big.mark=".", decimal.mark=",") #arredonda para y digitos
+  return(k)
+}
 #cria função para media movel  12 meses 
 MM12m <- function(x) {
                 y<-c(1:(length(x)))                        #cria variavel y to tamanho da serie inserida
@@ -13,4 +66,23 @@ MM12m <- function(x) {
                       }
                 y[1:12]<-NA                                #coloca NA nas primeiras 12 entradas
                 return(y)                                  #dá como retorno a série media movel 12 meses
+}
+#cria função para taxa anualizado (eleva a 12 potência)(ex. IPCA=2,33)
+FazTexto.TaxaAnualizada <- function(x){#x é a séria a ser análisada
+  k<-c(1:length(x)) 
+     for(i in 0:length(x)) {         
+        k[i]<-(1+x[i]/100)^12
+     }
+  k<-(k-1)*100
+  return(k)
+}
+#cria função para criar número indice de uma série mensal de inflação (para usar em deflacionamentos até para a ultima data)
+FazTexto.N_Indice <- function(x){#x é a séria a ser análisada
+  k<-c(1:length(x)) #retorna o numero indice para deflacionar para o ultimo valor do ipca
+     k[1]<-(1+x[1]/100)
+     for(i in 2:length(x)) {         
+        k[i]<-(1+x[i]/100)*k[i-1]
+     }
+  k<-k[length(k)/k]
+  return(k)
 }
