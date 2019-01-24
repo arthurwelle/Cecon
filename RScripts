@@ -83,6 +83,6 @@ FazTexto.N_Indice <- function(x){#x é a séria a ser análisada
      for(i in 2:length(x)) {         
         k[i]<-(1+x[i]/100)*k[i-1]
      }
-  k<-k[length(k)/k]
+  k<-k[length(k)]/k
   return(k)
 }
