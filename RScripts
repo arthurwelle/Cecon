@@ -86,3 +86,12 @@ FazTexto.N_Indice <- function(x){#x é a séria a ser análisada
   k<-k[length(k)]/k
   return(k)
 }
+
+FazTexto.Var12m  <-  function(x) {
+                y<-c(1:(length(x)))                        #cria variavel y to tamanho da serie inserida
+                      for(i in 13:(length(x))) {         #para i vezes menos 12 
+                          y[i] <- (((x[i]/x[i-12])-1)*100) #dividindo mes "atual" pelo mesmo mes do ano anterior
+                      }
+               y[1:12]<-NA                                #coloca NA nas primeiras 12 entradas
+                return(y)                                  
+}
