@@ -163,7 +163,7 @@ FazTexto.ValorMesAntes <- function (x, digitos = 2, meses = 12, texto = TRUE)
     }
 }
 
-@title Faz Texto Variacao m meses percentual
+#' @title Faz Texto Variacao m meses percentual
 #' @aliases FazTexto.VarMes.porc
 #' @author Arthur Welle
 #' @export
