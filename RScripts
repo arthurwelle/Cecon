@@ -95,3 +95,22 @@ FazTexto.Var12m  <-  function(x) {
                y[1:12]<-NA                                #coloca NA nas primeiras 12 entradas
                 return(y)                                  
 }
+
+geranota <- function(
+    fonte = "BC", # fonte
+    ultimadata = UltimaDataSerie,
+    serie = NULL
+) {
+    fonte_ = paste0("**Fonte:** ", fonte, ". ")
+    data_ = paste0("Na última atualização (em ", format(Sys.Date(), "%d de %B de %Y"), ") o último dado disponível era ", ultimadata, ".")
+    
+    if (is.null(serie) == FALSE) {
+        serie_ = paste0(" Series usadas: ", serie)
+        
+    } else {
+        serie_ = ""
+    }
+    nota_ = paste0(fonte_, data_, serie_)
+    
+    return(nota_)
+}
