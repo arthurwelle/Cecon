@@ -114,3 +114,10 @@ geranota <- function(
     
     return(nota_)
 }
+
+
+salvar_grafico <- function(){ # Usar sem argumento
+# Nomea o arquivo de acordo com o nome do .Rmd
+ggsave(paste0("./IMAGENS/", format(gsub(x = knitr::current_input(), pattern = ".Rmd", replacement = ".png"))), device = "png")
+ggsave(paste0("./IMAGENS/", format(gsub(x = knitr::current_input(), pattern = ".Rmd", replacement = ".svg"))), device = "svg")
+}
