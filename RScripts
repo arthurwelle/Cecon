@@ -121,3 +121,15 @@ salvar_grafico <- function(){ # Usar sem argumento
 ggsave(paste0("./IMAGENS/", format(gsub(x = knitr::current_input(), pattern = ".Rmd", replacement = ".png"))), device = "png")
 ggsave(paste0("./IMAGENS/", format(gsub(x = knitr::current_input(), pattern = ".Rmd", replacement = ".svg"))), device = "svg")
 }
+
+
+tx_crescimento <- function(df = d, n = 1){
+# df = dataframe/xts
+# n = 1 -> Mês/Mês anterior, Ano/Ano anterior, etc
+# n = 4 -> Trimestre/Mesmo trimestre do ano anterior
+# ...
+# n = 12 -> Mês/Mesmo mês do ano anterior
+# Atenção com objetos ts: n precisa ser negativo
+       growth <- diff(df, n = n)/lag(df, n = n)
+       return(growth)
+}
