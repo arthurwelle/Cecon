@@ -102,7 +102,7 @@ geranota <- function(
     serie = NULL
 ) {
     fonte_ = paste0("**Fonte:** ", fonte, ". ")
-    data_ = paste0("Na &uacute;ltima atualiza&ccedil;&atilde;o (em ", format(Sys.Date(), "%d de %B de %Y"), ") o &uacute;ltimo dado dispon&iacute;vel era ", ultimadata, ".")
+    data_ = paste0("Na &uacute;ltima atualiza&ccedil;&atilde;o (em ", format(Sys.Date(), "%d de %B de %Y"), ") o &uacute;ltimo dado dispon&Iacute;vel era ", ultimadata, ".")
     
     if (is.null(serie) == FALSE) {
         serie_ = paste0(" Series usadas: ", serie)
