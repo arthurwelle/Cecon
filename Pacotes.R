@@ -146,6 +146,15 @@ if (!require(stringr)) {
     library(stringr)
 }
 
+if (!require(scales)) {
+    install.packages('stringr')
+    library(stringr)
+} else{
+    library(scales)
+}
+
+
+
 # Atualizando
 
 Atualizacao <- FALSE
@@ -171,6 +180,7 @@ if (Atualizacao) {
     install.packages('highcharter')
     install.packages('openssl')
     install.packages('stringr')
+    install.packages('scales')
 }
 
 Atualizacao <- NULL
