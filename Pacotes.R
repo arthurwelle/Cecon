@@ -139,6 +139,13 @@ if (!require(openssl)) {
     library(openssl)
 }
 
+if (!require(stringr)) {
+    install.packages('stringr')
+    library(stringr)
+} else{
+    library(stringr)
+}
+
 # Atualizando
 
 Atualizacao <- FALSE
@@ -163,6 +170,7 @@ if (Atualizacao) {
     install.packages('xfun')
     install.packages('highcharter')
     install.packages('openssl')
+    install.packages('stringr')
 }
 
 Atualizacao <- NULL
