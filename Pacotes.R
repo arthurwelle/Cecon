@@ -131,6 +131,14 @@ if (!require(highcharter)) {
     library(highcharter)
 }
 
+
+if (!require(openssl)) {
+    install.packages('openssl')
+    library(openssl)
+} else{
+    library(openssl)
+}
+
 # Atualizando
 
 Atualizacao <- FALSE
@@ -154,6 +162,7 @@ if (Atualizacao) {
     install.packages('ggfortify')
     install.packages('xfun')
     install.packages('highcharter')
+    install.packages('openssl')
 }
 
 Atualizacao <- NULL
