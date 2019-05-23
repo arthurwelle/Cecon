@@ -156,7 +156,7 @@ embed_data= function(x= mtcars, filename= "file.csv", label= "Download"){
 
 #logo_cecon <- function (grafico = last_plot())
 {
-    grafico %>% ggplotly() %>%   
+    grafico %>% ggplotly() %>%    
                 layout(
                   images = list(
                     list(source = "https://raw.githubusercontent.com/iedados/Publico/master/logo_CECON.png",
@@ -173,8 +173,6 @@ embed_data= function(x= mtcars, filename= "file.csv", label= "Download"){
                     displaylogo=FALSE,
                     collaborate = FALSE,
                     locale = "pt-br",
-                    modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d",
-                    "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian", "hoverCompareCartesian", 
-                    "resetScale2d", "toggleSpikelines" )
-                ))
+                    modeBarButtonsToRemove = list("sendDataToCloud","zoom2d","pan2d","select2d","lasso2d", "zoomIn2d","zoomOut2d","autoScale2d","hoverClosestCartesian", "hoverCompareCartesian", "resetScale2d", "toggleSpikelines")
+                )
 }
