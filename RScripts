@@ -154,7 +154,8 @@ embed_data= function(x= mtcars, filename= "file.csv", label= "Download"){
 }
 
 
-#logo_cecon <- function (grafico = last_plot())
+#adiciona logo cecon em um gráfico plotly e muda a barra modeBar
+logo_cecon <- function (grafico = last_plot())
 {
     grafico %>% ggplotly() %>%    
                 layout(
